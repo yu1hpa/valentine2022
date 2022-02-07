@@ -1,0 +1,26 @@
+{
+  "name": "valentine2022",
+  "version": "0.0.1",
+  "description": "Web app for getting Valentine's Day chocolates",
+  "scripts": {
+    "init:tailwindcss": "tailwindcss -o ./tailwind.css",
+    "dev": "npm run dev:tailwind && trunk serve",
+    "dev:tailwind": "NODE_ENV=development tailwindcss -c ./tailwind.config.js -o ./tailwind.css --minify",
+    "build": "npm run build:tailwind",
+    "build:tailwindcss": "NODE_ENV=production tailwindcss -c ./tailwind.config.js -o ./tailwind.css --minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yu1hpa/valentine2022.git"
+  },
+  "author": "yu1hpa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yu1hpa/valentine2022/issues"
+  },
+  "homepage": "https://github.com/yu1hpa/valentine2022#readme",
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.1",
+    "tailwindcss": "^3.0.18"
+  }
+}
