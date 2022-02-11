@@ -9,7 +9,11 @@ module.exports = {
     ],
   },
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        festive: ["Festive"]
+      }
+    },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [],
 }
