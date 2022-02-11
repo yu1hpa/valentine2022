@@ -31,13 +31,11 @@ impl Component for Model {
     }
 
     fn view(&self, ctx: &Context<Self>) -> Html {
-        // This gives us a component's "`Scope`" which allows us to send messages, etc to the component.
-        let link = ctx.link();
         if self.is_clicked {
             html! {
               <Layout>
                 <div>
-                  <button onclick={link.callback(|_| Msg::Clicked)}>{ "Click" }</button>
+                  <button onclick={ctx.link().callback(|_| Msg::Clicked)}>{ "Click" }</button>
                 </div>
               </Layout>
             }
