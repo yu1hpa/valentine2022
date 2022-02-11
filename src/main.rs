@@ -1,5 +1,8 @@
 use yew::prelude::*;
 
+mod components;
+use components::layout::Layout;
+
 enum Msg {
     Clicked,
 }
@@ -32,17 +35,19 @@ impl Component for Model {
         let link = ctx.link();
         if self.is_clicked {
             html! {
-              <div class="flex justify-center">
-                <button onclick={link.callback(|_| Msg::Clicked)}>{ "Click" }</button>
-              </div>
+              <Layout>
+                <div>
+                  <button onclick={link.callback(|_| Msg::Clicked)}>{ "Click" }</button>
+                </div>
+              </Layout>
             }
         } else {
             html! {
-              <div class="flex justify-center">
+              <Layout>
                 <h1 class="font-bold text-6xl text-red-600">
-                    {"Clicked"}
+                  {"Clicked"}
                 </h1>
-              </div>
+              </Layout>
             }
         }
     }
