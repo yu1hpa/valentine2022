@@ -2,6 +2,7 @@ use yew::prelude::*;
 
 mod components;
 use components::layout::Layout;
+use components::emoji::Emoji;
 
 enum Msg {
     Clicked,
@@ -39,9 +40,9 @@ impl Component for Model {
             }
         } else {
             html! {
-              <h1 class="font-bold text-6xl text-red-600">
-                {"Clicked"}
-              </h1>
+              <>
+                <Emoji />
+              </>
             }
         };
         html! {
