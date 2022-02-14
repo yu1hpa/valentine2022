@@ -1,8 +1,10 @@
-use yew::{Component, Context, html, Html, Properties};
-use rand::seq::SliceRandom;
+use yew::{Children, Component, Context, html, Html, Properties};
 
 #[derive(PartialEq, Properties)]
-pub struct Props;
+pub struct Props{
+    #[prop_or_default]
+    pub children: Children,
+}
 
 pub struct Emoji;
 
@@ -11,18 +13,16 @@ impl Component for Emoji {
     type Properties = Props;
 
     fn create(_ctx: &Context<Self>) -> Self {
-        Emoji
+        Self
     }
 
-    fn view(&self, _ctx: &Context<Self>) -> Html {
-        let emojies = vec!["🍫", "🍰", "🍭", "🍦",
-                           "🍧", "🍩", "🍪", "🧁",
-                           "🥧", "🍬", "🍮", "🥶"];
-        let emoji: Vec<_> = emojies.choose_multiple(&mut rand::thread_rng(), 1).collect();
+    fn view(&self, ctx: &Context<Self>) -> Html {
         html! {
-          <h1 class="text-bold text-6xl">
-            { emoji }
-          </h1>
+          <>
+            <h1 class="text-bold text-6xl">
+              { for ctx.props().children.iter() }
+            </h1>
+          </>
         }
     }
 }
