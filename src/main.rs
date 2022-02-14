@@ -58,7 +58,14 @@ impl Component for Model {
             if self.is_clicked {
                 html! {
                   <div>
-                    <button onclick={ctx.link().callback(|_| Msg::Clicked)}>{ "Click" }</button>
+                    <button
+                      class="bg-transparent hover:bg-green-500 text-green-700
+                            font-semibold hover:text-white py-2 px-4
+                            border border-green-500 hover:border-transparent rounded"
+                      onclick={ctx.link().callback(|_| Msg::Clicked)}
+                    >
+                        { "引く" }
+                    </button>
                   </div>
                 }
             } else {
