@@ -19,20 +19,45 @@ impl Component for Layout {
     fn view(&self, ctx: &Context<Self>) -> Html {
         html! {
           <>
-            <header class="py-2">
-              <div  class="py-4 grid place-items-center">
-                <div class="text-center hover:opacity-50">
-                  <h1 class="text-6xl font-mono text-pink-800 font-festive">
-                    <a href="https://github.com/yu1hpa/valentine2022">{ "Valentine's Day 2022" }</a>
-                  </h1>
+            <div class="h-screen bg-red-100">
+              <header class="py-2">
+                <div  class="py-4 grid place-items-center">
+                  <div class="text-center hover:opacity-50">
+                    <h1 class="text-6xl font-mono text-pink-800 font-festive">
+                      <a href="https://github.com/yu1hpa/valentine2022">{ "Valentine's Day 2022" }</a>
+                    </h1>
+                  </div>
                 </div>
-              </div>
-            </header>
-            <main>
-              <div class="container mx-auto flex flex-col justify-center items-center">
-                { for ctx.props().children.iter() }
-              </div>
-            </main>
+              </header>
+              <main class="container mx-auto">
+                <div class="flex flex-col justify-center items-center">
+                  <div class="xl:w-1/2 sm:w-2/3">
+                    <p class="bg-green-200 rounded-md p-4 m-6">
+                      { "🍫（チョコレート）🍰（ケーキ）🍭（キャンディー１）🍦（ソフトクリーム）
+                      🍧（かき氷）🍩（ドーナツ）🍪（クッキー）🧁（カップケーキ）🥧（パイ）
+                      🍬（キャンディー２）🍮（プリン）🥶（寒い顔）の12個が含まれてます" }
+                    </p>
+                    <p class="p-4 m-6">
+                      { "🍫が唯一の" }
+                      <span class="underline decoration-red-600">
+                        { "当たり" }
+                      </span>
+                        { "で、他は" }
+                      <span class="underline decoration-green-600">
+                        { "ハズレ" }
+                      </span>
+                        { "で、🥶は" }
+                      <span class="underline decoration-blue-600">
+                        { "大ハズレです" }
+                      </span>
+                    </p>
+                  </div>
+                  <div class="p-2 m-4 h-auto flex flex-row">
+                    { for ctx.props().children.iter() }
+                  </div>
+                </div>
+              </main>
+            </div>
             <footer class="py-2 border-t border-gray-300 text-center text-gray-600">
               <span>{ "Copyright©2022: yu1hpa" }</span>
             </footer>
