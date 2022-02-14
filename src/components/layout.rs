@@ -1,4 +1,5 @@
 use yew::{html, Children, Component, Context, Html, Properties};
+use crate::components::header::Header;
 
 #[derive(PartialEq, Properties)]
 pub struct Props {
@@ -20,15 +21,7 @@ impl Component for Layout {
         html! {
           <>
             <div class="h-screen bg-red-100">
-              <header class="py-2">
-                <div  class="py-4 grid place-items-center">
-                  <div class="text-center hover:opacity-50">
-                    <h1 class="text-6xl font-mono text-pink-800 font-festive">
-                      <a href="https://github.com/yu1hpa/valentine2022">{ "Valentine's Day 2022" }</a>
-                    </h1>
-                  </div>
-                </div>
-              </header>
+              <Header />
               <main class="container mx-auto">
                 <div class="flex flex-col justify-center items-center">
                   <div class="xl:w-1/2 sm:w-2/3">
