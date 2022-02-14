@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/yu1hpa/valentine2022/issues"
   },
-  "homepage": "https://github.com/yu1hpa/valentine2022#readme",
+  "homepage": "https://yu1hpa.github.io/valentine2022",
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.1",
     "tailwindcss": "^3.0.18"
