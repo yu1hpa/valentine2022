@@ -1,5 +1,6 @@
 use yew::{html, Children, Component, Context, Html, Properties};
 use crate::components::header::Header;
+use crate::components::footer::Footer;
 
 #[derive(PartialEq, Properties)]
 pub struct Props {
@@ -51,9 +52,7 @@ impl Component for Layout {
                 </div>
               </main>
             </div>
-            <footer class="py-2 border-t border-gray-300 text-center text-gray-600">
-              <span>{ "Copyright©2022: yu1hpa" }</span>
-            </footer>
+            <Footer />
           </>
         }
     }
