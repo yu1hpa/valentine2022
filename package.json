@@ -6,7 +6,7 @@
     "init:tailwindcss": "tailwindcss -o ./tailwind.css",
     "dev": "npm run dev:tailwind && trunk serve",
     "dev:tailwind": "NODE_ENV=development tailwindcss -c ./tailwind.config.js -o ./tailwind.css --minify",
-    "build": "npm run build:tailwind",
+    "build": "npm run build:tailwindcss",
     "build:tailwindcss": "NODE_ENV=production tailwindcss -c ./tailwind.config.js -o ./tailwind.css --minify"
   },
   "repository": {
