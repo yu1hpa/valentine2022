@@ -1,4 +1,7 @@
 use yew::prelude::*;
+use gloo::storage::LocalStorage;
+use gloo_storage::Storage;
+use rand::seq::SliceRandom;
 
 mod components;
 use components::layout::Layout;
@@ -10,6 +13,7 @@ enum Msg {
 
 struct Model {
     is_clicked: bool,
+    emoji: String,
 }
 
 impl Component for Model {
@@ -19,29 +23,54 @@ impl Component for Model {
     fn create(_ctx: &Context<Self>) -> Self {
         Self {
             is_clicked: true,
+            emoji: "".to_string(),
         }
     }
 
     fn update(&mut self, _ctx: &Context<Self>, msg: Self::Message) -> bool {
         match msg {
             Msg::Clicked => {
+                // if button clicked, change to "false"
                 self.is_clicked = false;
+
+                // Choose randomly
+                let emojies = vec!["🍫", "🍰", "🍭", "🍦",
+                                   "🍧", "🍩", "🍪", "🧁",
+                                   "🥧", "🍬", "🍮", "🥶"];
+
+                let one_emoji: Vec<_> = emojies
+                                        .choose_multiple(&mut rand::thread_rng(), 1)
+                                        .collect();
+                self.emoji = one_emoji[0].to_string();
+
+                // Set emoji to LocalStorage
+                LocalStorage::set("emoji", self.emoji.clone()).ok();
+
                 true
             }
         }
     }
 
     fn view(&self, ctx: &Context<Self>) -> Html {
-        let content = if self.is_clicked {
-            html! {
-              <div>
-                <button onclick={ctx.link().callback(|_| Msg::Clicked)}>{ "Click" }</button>
-              </div>
+        let emoji: String = LocalStorage::get("emoji").unwrap_or_default();
+        let content = if emoji == "" {
+            // true -> false
+            if self.is_clicked {
+                html! {
+                  <div>
+                    <button onclick={ctx.link().callback(|_| Msg::Clicked)}>{ "Click" }</button>
+                  </div>
+                }
+            } else {
+                html! {
+                  // not going through here
+                  // because emoji is stored, if button clicked
+                }
             }
         } else {
             html! {
               <>
-                <Emoji />
+                <Emoji>{ emoji }</Emoji>
               </>
             }
         };
