@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v2
       - run: rustup target add wasm32-unknown-unknown
       - run: cargo install trunk
-      - run: trunk build --release
+      - run: trunk build --release --public-url valentine2022
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
