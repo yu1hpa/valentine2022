@@ -1,0 +1,36 @@
+name: Deploy to gh-pages
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "17.x"
+      - run: npm install
+      - run: npm run build
+
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - uses: jetli/trunk-action@v0.1.0
+        with:
+          version: "latest"
+      - run: rustup target add wasm32-unknown-unknown
+      - run: trunk build
+
+      - run: cat ./dist/index.html | sed -e 's/"\//".\//g' -e "s/'\//'.\//g" >> ./dist/fixed.html && mv ./dist/fixed.html ./dist/index.html
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
